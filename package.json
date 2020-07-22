@@ -1,13 +1,13 @@
 {
   "name": "@epimodev/json-websocket",
   "description": "Create a websocket server with a jsonlines file",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.js",
   "repository": "Epimodev/json-websocket",
   "author": "Frederic Godin",
   "license": "MIT",
   "files": [
-    "module"
+    "dist"
   ],
   "engines": {
     "node": ">=12.0.0"
