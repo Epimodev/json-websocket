@@ -7,18 +7,22 @@ import { ServerOptions } from '../types'
  */
 function startWsServer({ host, port }: ServerOptions): (message: any) => void {
   const server = new WebSocket.Server({ host, port })
-
-  // define empty function until ws is ready
-  let send: (message: any) => void = () => {}
+  const clients: WebSocket[] = []
 
   server.on('connection', ws => {
-    send = message => {
-      ws.send(message)
-    }
+    clients.push(ws)
+
+    ws.on('close', () => {
+      const index = clients.indexOf(ws)
+      // remove ws from the list of connected clients
+      clients.splice(index, 1)
+    })
   })
 
-  return (message: any) => {
-    send(message)
+  return message => {
+    for (let i = 0, l = clients.length; i < l; i += 1) {
+      clients[i].send(message)
+    }
   }
 }
 
