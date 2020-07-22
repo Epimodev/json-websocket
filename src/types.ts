@@ -5,4 +5,5 @@ export interface ServerOptions {
   delay: number
   timer_field?: string
   interval: number
+  fast_forward: number
 }

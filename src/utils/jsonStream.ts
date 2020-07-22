@@ -4,17 +4,18 @@ import { createSource } from '@epimodev/callbag-doki/sources'
 import { ServerOptions } from '../types'
 
 /**
- * get interval between 2 messages in ms
+ * get interval between 2 messages in seconds
  * @param lastMessage - last message sent to client
  * @param nextMessage - next message to send to client
  * @param timerField - field where timestamp can be stored
  * @param defaultInterval - interval to use if there isn't timerField
- * @return interval in ms
+ * @return interval in seconds
  */
 function getMessageInterval(
   lastMessage: any,
   nextMessage: any,
   timerField: string | undefined,
+  fastForward: number,
   defaultInterval: number,
 ): number {
   if (!timerField) {
@@ -26,7 +27,7 @@ function getMessageInterval(
     return defaultInterval
   }
 
-  const interval = nextTimestamp - lastTimestamp
+  const interval = (nextTimestamp - lastTimestamp) / fastForward
 
   return Math.max(interval, 0) // avoid negative value
 }
@@ -34,7 +35,13 @@ function getMessageInterval(
 /**
  * Create a stream based on jsonlines file
  */
-function jsonStream({ filePath, delay, timer_field, interval }: ServerOptions): Source<string> {
+function jsonStream({
+  filePath,
+  delay,
+  timer_field,
+  fast_forward,
+  interval,
+}: ServerOptions): Source<string> {
   return createSource((next, complete, error) => {
     try {
       let t: NodeJS.Timeout
@@ -49,7 +56,13 @@ function jsonStream({ filePath, delay, timer_field, interval }: ServerOptions): 
           if (nextLine) {
             try {
               const nextMessage = JSON.parse(nextLine.toString())
-              const nextTimeout = getMessageInterval(message, nextMessage, timer_field, interval)
+              const nextTimeout = getMessageInterval(
+                message,
+                nextMessage,
+                timer_field,
+                fast_forward,
+                interval,
+              )
 
               sendMessage(nextMessage, nextTimeout * 1000)
             } catch (e) {
