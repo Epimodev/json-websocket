@@ -22,7 +22,8 @@
     "lint": "eslint --env node src/**/*.ts",
     "check-types": "tsc --noEmit",
     "pre-commit": "lint-staged",
-    "commit": "yarn pre-commit && git-cz"
+    "commit": "yarn pre-commit && git-cz",
+    "prepublish": "yarn check-types && yarn build"
   },
   "config": {
     "commitizen": {
