@@ -55,6 +55,7 @@ Options
   -p, --port           Port to bind  (default 4000)
   -d, --delay          delay before sending first message (in seconds)  (default 0)
   -f, --timer_field    field to get interval between two messages (in seconds)
+  --fast_forward       decrease interval between messages, works only with timer_field (value is a factor)  (default 1)
   -i, --interval       interval between 2 messages in seconds if there isn't any field giving the information  (default 1)
   -v, --version        Displays current version
   -h, --help           Displays this message

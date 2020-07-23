@@ -6,7 +6,7 @@ import { startWsServer } from './utils/websocket'
 import { ServerOptions } from './types'
 
 sade('json-websocket [file_path]', true)
-  .version('0.1.2')
+  .version('0.1.3')
   .describe('Run a websocket server with a jsonlines file')
   .example('my_events.jsonl')
   .example('my_events.jsonl --port 8080')
@@ -16,7 +16,7 @@ sade('json-websocket [file_path]', true)
   .option('-f, --timer_field', 'field to get interval between two messages (in seconds)')
   .option(
     '--fast_forward',
-    'decrease interval between messages, works only when timer_field is defined (value is a factor)',
+    'decrease interval between messages, works only with timer_field (value is a factor)',
     1,
   )
   .option(
