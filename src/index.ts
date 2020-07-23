@@ -6,7 +6,7 @@ import { startWsServer } from './utils/websocket'
 import { ServerOptions } from './types'
 
 sade('json-websocket [file_path]', true)
-  .version('0.1.3')
+  .version('0.1.4')
   .describe('Run a websocket server with a jsonlines file')
   .example('my_events.jsonl')
   .example('my_events.jsonl --port 8080')

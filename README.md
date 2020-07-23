@@ -2,13 +2,13 @@
 
 ### Presentation
 
-`json-websocket` is a cli which make possible to create a WebSocket with a jsonlines file (more info about jsonlines here: [http://jsonlines.org/](http://jsonlines.org/)).  
-It's like [json-server](https://github.com/typicode/json-server), but it create a WebSocket instead of a REST api.
+`json-websocket` is a cli which makes possible to create a WebSocket with a jsonlines file (more info about jsonlines here: [http://jsonlines.org/](http://jsonlines.org/)).  
+It's like [json-server](https://github.com/typicode/json-server), but it creates a WebSocket instead of a REST api.
 
 ### Motivation
 
-Initially I made this project to help people to have the same experience as PandaScore live api without waiting for a live match.  
-But it will help us also to create WebSocket with fake data for our development environment.  
+Initially I made this project to help people have the same experience as PandaScore live api without waiting for a live match.  
+But it will help us also create WebSocket with fake data for our development environment.  
 We can also imagine with this tool a way to reproduce some bugs related to realtime.
 
 ### Instalation
@@ -28,7 +28,7 @@ npm install --global @epimodev/json-websocket
 ### Usage
 
 ```sh
-# start a WebSocket server which send events stored in `live_frames.jsonl` (jsonl is the extension for jsonlines files)
+# start a WebSocket server which sends events stored in `live_frames.jsonl` (jsonl is the extension for jsonlines files)
 json-websocket live_frames.jsonl
 
 # start a WebSocket server binded to 8080 port
